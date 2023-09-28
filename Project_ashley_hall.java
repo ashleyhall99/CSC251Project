@@ -17,8 +17,11 @@ public class Project_ashley_hall {
        double pHeight, pWeight;
        String pName, fName, lName, smokerInput, line;
        Policy user;
+       int numberSmoker = 0;
+       int numberNSmoker = 0;
        
-       ArrayList<Policy> insuranceUser = new ArrayList<Policy>();
+       //creation of arraylist object
+       ArrayList<Policy> insuranceUser = new ArrayList<Policy>(); 
        
        while (input.hasNext())
        {
@@ -56,6 +59,19 @@ public class Project_ashley_hall {
              System.out.printf("Policy Price: $%.2f \n", insuranceUser.get(i).getInsuranceFee());
              System.out.println();
              }
+             
+             //calculating the number of smokers/nonsmokers
+             for(int i = 0; i < insuranceUser.size(); i++)
+             {
+             
+              if (insuranceUser.get(i).getsmokingStatus().equalsIgnoreCase("smoker"))
+               numberSmoker += 1;
+              else
+               numberNSmoker += 1;
+             }
+             
+             System.out.println("The number of smokers is: " + numberSmoker);
+             System.out.println("The number of smokers is: " + numberNSmoker);
             
         }
         catch(IOException error)
