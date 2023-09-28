@@ -39,6 +39,7 @@ public class Policy {
     * @param h height
     * @param w weight
     */
+
    public Policy(int pN, String p, String fN, String ln, int a, String sS, 
            double h, double w){
        policyNumber = pN;
@@ -50,9 +51,10 @@ public class Policy {
        height = h;
        weight = w;   
    } 
-   /*
-   mutator method for policyNumber
-   */
+   /**
+    * Sets the policy number 
+    * @param pN - policy number
+    */
    public void setpolicyNumber(int pN){
         policyNumber = pN;
     }
@@ -63,9 +65,10 @@ public class Policy {
       public int getpolicyNumber(){
         return policyNumber;
     }
-        /*
-   mutator method for providorName
-   */
+   /**
+    * Sets the name of the provider
+    * @param p - name of provider
+    */
    public void setproviderName(String p){
         providerName = p;
     }
@@ -76,9 +79,10 @@ public class Policy {
       public String getproviderName(){
         return providerName;
     }
-    /*
-   mutator method for firstName
-   */
+    /**
+     * Sets the first name of the user
+     * @param fN - first name
+     */
    public void setfirstName(String fN){
         firstName = fN;
     }
@@ -89,9 +93,10 @@ public class Policy {
       public String getfirstName(){
         return firstName;
     }
-            /*
-   mutator method for lastName
-   */
+    /**
+     * sets the last name of the user
+     * @param lN - last name
+     */
    public void setlastName(String lN){
         lastName = lN;
     }
@@ -102,9 +107,10 @@ public class Policy {
       public String getlastName(){
         return lastName;
     }
-   /*
-   *mutator method for age
-   */
+   /**
+    * sets the age of the user
+    * @param a - age
+    */
    public void setAge(int a){
         age = a;
     }
@@ -115,9 +121,10 @@ public class Policy {
       public int getAge(){
         return age;
     }
-   /*
-   mutator method for smokingStatus
-   */
+   /**
+    * sets the smoking status of the user
+    * @param sS - smoking status
+    */
    public void setsmokingStatus(String sS){
         smokingStatus = sS;
     }
@@ -128,9 +135,10 @@ public class Policy {
       public String getsmokingStatus(){
         return smokingStatus;
     }
-   /*
-   mutator method for height
-   */
+   /**
+    * sets the height for the user
+    * @param h - height
+    */
    public void setHeight(double h){
         height = h;
     }
@@ -141,9 +149,10 @@ public class Policy {
       public double getHeight(){
         return height;
     }
-   /*
-   mutator method for weight
-   */
+   /**
+    * sets the weight for the user
+    * @param w - weight
+    */
    public void setWeight(double w){
         weight = w;
     }
@@ -156,7 +165,7 @@ public class Policy {
     }
       /**
        * A method to get BMI for policyholder
-       * @return 
+       * @return - BMI for user
        */
      public double getBMI(){
        
