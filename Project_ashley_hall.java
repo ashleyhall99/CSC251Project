@@ -1,71 +1,68 @@
 import java.util.*;
+import java.io.*;
 
 public class Project_ashley_hall {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        
-       //fields for user input
+    public static void main(String[] args) throws IOException
+    {
+        try
+        {
+            File insuranceFile = new File("PolicyInformation.txt");
+            Scanner input = new Scanner(insuranceFile);
+            
        int pNumber, pAge;
        double pHeight, pWeight;
-       String pName, fName, lName, smokerInput;
-     
-                
-        //provide scanner for user
-        Scanner keyboard = new Scanner(System.in);
-        
-        //ask user for policy number
-        System.out.println("Please enter the Policy Number: ");
-        pNumber = keyboard.nextInt();
-        
-        keyboard.nextLine();
-        
-        //ask user for provider name
-        System.out.println("Please enter the Provider Name: ");
-        pName = keyboard.nextLine();
-        
-        //ask user for their first Name
-        System.out.println("Please enter the PolicyHolder's First Name: ");
-        fName = keyboard.nextLine();
-                
-        //ask user for their last name
-        System.out.println("Please enter the PolicyHolder's Last Name: ");
-        lName = keyboard.nextLine();
-        
-        //ask the user for their age
-        System.out.println("What is the Policyholders Age: ");
-        pAge = keyboard.nextInt();
-        
-        keyboard.nextLine();
-        
-        //ask the user if they are a smoker
-        System.out.println("Please enter the Policyholder's Smoking Status(smoker/non-smoker): ");
-        smokerInput = keyboard.nextLine();
-  
-         //ask the user for their height
-         System.out.println("Please enter the Policyholder's Height(in inches): ");
-         pHeight = keyboard.nextDouble();
-         
-         //ask the user for their weight
-         System.out.println("Please enter the Policyholder's weight(in pounds): ");
-         pWeight = keyboard.nextDouble();
-         
-         Policy user1 = new Policy(pNumber, pName, fName, lName, pAge, smokerInput, pHeight, pWeight);
-         
-        System.out.println("Policy Number: " + user1.getpolicyNumber());
-        System.out.println("Provider Name: " + user1.getproviderName());
-        System.out.println("Policy Holder's First Name: " + user1.getfirstName());
-        System.out.println("Policy Holder's Lase Name: " + user1.getlastName());
-        System.out.println("Policy Holder's Age: " + user1.getAge());
-        System.out.println("Policy Holder's SmokerStatus: " + user1.getsmokingStatus());
-        System.out.printf("Policy Holder's Height: %.1f inches\n",  user1.getHeight());
-        System.out.printf("Policy Holder's Weight: %.1f pounds\n", user1.getWeight());
-        System.out.printf("Policyholder's BMI: %.2f \n", user1.getBMI());
-        System.out.printf("Policy Price: $%.2f \n", user1.getInsuranceFee());
-        
-        
+       String pName, fName, lName, smokerInput, line;
+       Policy user;
+       
+       ArrayList<Policy> insuranceUser = new ArrayList<Policy>();
+       
+       while (input.hasNext())
+       {
+           pNumber = input.nextInt();
+           line = input.nextLine(); //consumes line from int input
+           pName = input.nextLine(); 
+           fName = input.nextLine(); 
+           lName = input.nextLine();
+           pAge = input.nextInt();
+           line = input.nextLine(); //consumes line from int input
+           smokerInput = input.nextLine();
+           pHeight = input.nextDouble();
+           pWeight = input.nextDouble();
+           
+           user = new Policy(pNumber, pName, fName, lName, pAge, smokerInput, pHeight,
+           pWeight);
+           
+           insuranceUser.add(user);
+           
+           if(input.hasNext()) //will continue reading if there is another line to read
+               line = input.nextLine();  
+       }
+            //for loop for reading through the arraylist
+            for(int i = 0; i < insuranceUser.size(); i++)
+            {
+             System.out.println("Policy Number: " + insuranceUser.get(i).getpolicyNumber());
+             System.out.println("Provider Name: " + insuranceUser.get(i).getproviderName());
+             System.out.println("Policy Holder's First Name: " + insuranceUser.get(i).getfirstName());
+             System.out.println("Policy Holder's Lase Name: " + insuranceUser.get(i).getlastName());
+             System.out.println("Policy Holder's Age: " + insuranceUser.get(i).getAge());
+             System.out.println("Policy Holder's SmokerStatus: " + insuranceUser.get(i).getsmokingStatus());
+             System.out.printf("Policy Holder's Height: %.1f inches\n",  insuranceUser.get(i).getHeight());
+             System.out.printf("Policy Holder's Weight: %.1f pounds\n", insuranceUser.get(i).getWeight());
+             System.out.printf("Policyholder's BMI: %.2f \n", insuranceUser.get(i).getBMI());
+             System.out.printf("Policy Price: $%.2f \n", insuranceUser.get(i).getInsuranceFee());
+             System.out.println();
+             }
+            
+        }
+        catch(IOException error)
+        {
+            System.out.println("There has been an error: " + error.getMessage());
+        }
+ 
         
     }
     

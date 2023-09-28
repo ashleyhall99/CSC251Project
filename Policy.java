@@ -12,7 +12,7 @@ public class Policy {
     private String smokingStatus;
     private double height;
     private double weight;
-    private double insurance = 600;
+    
     
    /**
     * no-arg constructor - sets default values
@@ -176,20 +176,31 @@ public class Policy {
       * @return the insurance fee
       */
      public double getInsuranceFee(){
-         if (age > 50)
+         
+         final double BASE_INSURANCE = 600;
+         final double FEE_AGE = 75;
+         final double FEE_SMOKING = 100;
+         final double FEE_BMI = 20;
+         
+         final int MAX_AGE = 50;
+         final int MAX_BMI = 35;
+         
+         double price = BASE_INSURANCE;
+         
+         if (age > MAX_AGE) //if they are over 50
          {
-             insurance += 75; 
+             price  += FEE_AGE; 
          }
-         if (smokingStatus.equals("smoker"))
+         if (smokingStatus.equalsIgnoreCase("smoker"))
          {
-             insurance += 100;
+             price += FEE_SMOKING;
          }
-         if (getBMI() > 35)
+         if (getBMI() > MAX_BMI)
          {
-             insurance += (getBMI() - 35) *  20; 
+             price += (getBMI() - MAX_BMI) *  FEE_BMI; 
          }
          
-         return insurance;
+         return price;
      }
     
 }
