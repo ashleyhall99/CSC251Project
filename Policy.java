@@ -117,5 +117,13 @@ public class Policy {
          
          return price;
      }
+     
+     //to string method for policy
+     public String toString() 
+     {
+      return "Policy Number" + policyNumber 
+      + "\n ProviderName: " + providerName;
+     
+     }
     
 }
