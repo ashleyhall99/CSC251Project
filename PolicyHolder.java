@@ -93,5 +93,13 @@ public class PolicyHolder {
         return weight;
     }
 
+   //toString for policy holder
+   public String toString()
+   {
+    return "First Name: " + firstName + "\n Last Name: " + lastName + "\n Age: " + age + 
+    "\n Smoking Status: " + smokingStatus + "\n Height: " 
+     + height  + "\n Weight " + weight;
+    
+   }
 
 }
