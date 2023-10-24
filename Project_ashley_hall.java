@@ -19,6 +19,7 @@ public class Project_ashley_hall {
        Policy user;
        int numberSmoker = 0;
        int numberNSmoker = 0;
+       static int noOfPolicies;
        
        //creation of arraylist object
        ArrayList<Policy> insuranceUser = new ArrayList<Policy>(); 
@@ -58,6 +59,8 @@ public class Project_ashley_hall {
              System.out.printf("Policyholder's BMI: %.2f \n", insuranceUser.get(i).getBMI());
              System.out.printf("Policy Price: $%.2f \n", insuranceUser.get(i).getInsuranceFee());
              System.out.println();
+             
+             noOfPolicies++;
              }
              
              //calculating the number of smokers/nonsmokers
