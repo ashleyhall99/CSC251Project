@@ -6,7 +6,8 @@ public class Policy {
     
     private int policyNumber;
     private String providerName;
-   
+    private PolicyHolder policyUser; 
+    static int count = 0;
     
     
    /**
@@ -16,36 +17,39 @@ public class Policy {
        
        policyNumber = 0;
        providerName = null;
-       firstName = null;
-       lastName = null;
-       age = 0;
-       smokingStatus = null;
-       height = 0;
-       weight = 0; 
+       policyUser = new PolicyHolder();
+       count += 1;
    }
    /**
     * constructor that sets values from user
     * @param pN policyNumber
-    * @param p providerName 
-    * @param fN firstName
-    * @param ln lastName
-    * @param a age
-    * @param sS smokingStatus
-    * @param h height
-    * @param w weight
+    * @param p providerName
     */
 
-   public Policy(int pN, String p, String fN, String ln, int a, String sS, 
-           double h, double w){
+   public Policy(int pN, String p, PolicyHolder pU){
        policyNumber = pN;
-       providerName = p;
-       firstName = fN;
-       lastName = ln;
-       age = a;
-       smokingStatus = sS;
-       height = h;
-       weight = w;   
+       providerName = p;  
+       policyUser = new PolicyHolder(pU);
+       count += 1;
+       
    } 
+   
+   public int getCount()
+   {
+   return count;
+   }
+   //sets the policy holder object
+   public void setPolicyHolder(PolicyHolder pU)
+   {
+   policyUser = new PolicyHolder(pU);
+   }
+   
+   //gets the policy holder object
+   public PolicyHolder getPolicyHolder()
+   {
+   return new PolicyHolder(policyUser);
+   }
+   
    /**
     * Sets the policy number 
     * @param pN - policy number
@@ -74,18 +78,7 @@ public class Policy {
       public String getproviderName(){
         return providerName;
     }
-    /**
-     * Sets the first name of the user
-     * @param fN - first name
-     */
-        /**
-       * A method to get BMI for policyholder
-       * @return - BMI for user
-       */
-     public double getBMI(){
-       
-        return (weight * 703)/(height * height);
-}
+
      /**
       * A method that returns the price of a insurance policy
       * @return the insurance fee
@@ -102,17 +95,17 @@ public class Policy {
          
          double price = BASE_INSURANCE;
          
-         if (age > MAX_AGE) //if they are over 50
+         if (policyUser.getAge() > MAX_AGE) //if they are over 50
          {
              price  += FEE_AGE; 
          }
-         if (smokingStatus.equalsIgnoreCase("smoker"))
+         if (policyUser.getsmokingStatus().equalsIgnoreCase("smoker"))
          {
              price += FEE_SMOKING;
          }
-         if (getBMI() > MAX_BMI)
+         if (policyUser.getBMI() > MAX_BMI)
          {
-             price += (getBMI() - MAX_BMI) *  FEE_BMI; 
+             price += (policyUser.getBMI() - MAX_BMI) *  FEE_BMI; 
          }
          
          return price;
@@ -121,8 +114,8 @@ public class Policy {
      //to string method for policy
      public String toString() 
      {
-      return "Policy Number" + policyNumber 
-      + "\n ProviderName: " + providerName;
+      return "Policy Number: " + policyNumber 
+      + "\nProvider Name: " + providerName +  policyUser; 
      
      }
     

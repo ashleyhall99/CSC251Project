@@ -17,9 +17,9 @@ public class Project_ashley_hall {
        double pHeight, pWeight;
        String pName, fName, lName, smokerInput, line;
        Policy user;
+       PolicyHolder pH;
        int numberSmoker = 0;
        int numberNSmoker = 0;
-       static int noOfPolicies;
        
        //creation of arraylist object
        ArrayList<Policy> insuranceUser = new ArrayList<Policy>(); 
@@ -37,8 +37,12 @@ public class Project_ashley_hall {
            pHeight = input.nextDouble();
            pWeight = input.nextDouble();
            
-           user = new Policy(pNumber, pName, fName, lName, pAge, smokerInput, pHeight,
+          //creates policy holder object that will be sent to the policy object as a field
+           pH = new PolicyHolder(fName, lName, pAge, smokerInput, pHeight,
            pWeight);
+           
+           //creation of policy object that with use policyholder as a field
+           user = new Policy(pNumber, pName, pH);
            
            insuranceUser.add(user);
            
@@ -48,31 +52,23 @@ public class Project_ashley_hall {
             //for loop for reading through the arraylist
             for(int i = 0; i < insuranceUser.size(); i++)
             {
-             System.out.println("Policy Number: " + insuranceUser.get(i).getpolicyNumber());
-             System.out.println("Provider Name: " + insuranceUser.get(i).getproviderName());
-             System.out.println("Policy Holder's First Name: " + insuranceUser.get(i).getfirstName());
-             System.out.println("Policy Holder's Lase Name: " + insuranceUser.get(i).getlastName());
-             System.out.println("Policy Holder's Age: " + insuranceUser.get(i).getAge());
-             System.out.println("Policy Holder's SmokerStatus: " + insuranceUser.get(i).getsmokingStatus());
-             System.out.printf("Policy Holder's Height: %.1f inches\n",  insuranceUser.get(i).getHeight());
-             System.out.printf("Policy Holder's Weight: %.1f pounds\n", insuranceUser.get(i).getWeight());
-             System.out.printf("Policyholder's BMI: %.2f \n", insuranceUser.get(i).getBMI());
+             System.out.println(insuranceUser.get(i).toString());
+             System.out.printf("Policyholder's BMI: %.2f \n", insuranceUser.get(i).getPolicyHolder().getBMI());
              System.out.printf("Policy Price: $%.2f \n", insuranceUser.get(i).getInsuranceFee());
              System.out.println();
              
-             noOfPolicies++;
              }
              
              //calculating the number of smokers/nonsmokers
              for(int i = 0; i < insuranceUser.size(); i++)
              {
              
-              if (insuranceUser.get(i).getsmokingStatus().equalsIgnoreCase("smoker"))
+              if (insuranceUser.get(i).getPolicyHolder().getsmokingStatus().equalsIgnoreCase("smoker"))
                numberSmoker += 1;
               else
                numberNSmoker += 1;
              }
-             
+             System.out.println("There were " + insuranceUser.get(0).getCount() + " objects created.");
              System.out.println("The number of smokers is: " + numberSmoker);
              System.out.println("The number of smokers is: " + numberNSmoker);
             
